@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario y Tareas</title>
+    <link rel="icon" href="logo (1).ico">
+    <link rel="stylesheet" href="styles7.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calendar">
+            <div class="calendar-header">
+                <a class="btn" href="chat.html">Regresar</a>
+                <a class="btn" href="progress-tracking.html">Continuar</a>
+                <button class="prev-month">&lt;</button>
+                <h2 class="current-month"></h2>
+                <button class="next-month">&gt;</button>
+            </div>
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th>Dom</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mié</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sáb</th>
+                    </tr>
+                </thead>
+                <tbody class="calendar-body"></tbody>
+            </table>
+        </div>
+        
+        <div class="task-list">
+            <h2>Tareas</h2>
+            <input type="text" class="search-bar" placeholder="Buscar tarea...">
+            <ul class="tasks"></ul>
+            <input type="text" class="new-task" placeholder="Nueva tarea">
+            <select class="task-priority">
+                <option value="normal">Normal</option>
+                <option value="alta">Alta</option>
+                <option value="baja">Baja</option>
+            </select>
+            <button class="add-task">Agregar</button>
+        </div>
+    </div>
+    <header>
+        <nav>
+            <ul> 
+                <li><a href="server.js"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="calendarSection">
+            <!-- Aquí se mostrará el calendario -->
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+<div class="chat-box" id="chat-box">
+    <!-- Aquí se mostrarán los mensajes -->
+</div>
+</html>

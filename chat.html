@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="icon" href="logo (1).ico">
+    <link rel="stylesheet" href="styles6.css">
+
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <a class="btn" href="team-members.html">Regresar</a>
+            <h2 style="flex-grow: 1; text-align: center;">Chat</h2>
+            <button class="fullscreen-button" title="Pantalla Completa">Pantalla Completa</button>
+            <span class="three-dots" id="optionsButton">⋮</span> <!-- Tres puntos -->
+            <div class="options-menu" id="optionsMenu">
+                <button id="searchMessages">Buscar mensajes</button>
+                <button id="deleteMessages">Eliminar mensajes</button>
+                <button id="deleteFiles">Eliminar archivos</button>
+                <button id="videoCall">Video Llamada</button>
+                <button id="audioCall">Llamada Normal</button>
+            </div>
+            <a class="btn" href="calendar.html">Continuar</a>
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Aquí se mostrarán los mensajes -->
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Escribe tu mensaje...">
+            <button id="sendChatBtn">Enviar</button>
+            <button id="emoji-button">😊</button>
+            <input type="file" id="file-input" style="display: none;">
+            <button id="file-button">📁</button>
+            <div class="emoji-picker" id="emojiPicker">
+                <span>😊</span>
+                <span>😂</span>
+                <span>😍</span>
+                <span>😢</span>
+                <span>😡</span>
+                <span>😎</span>
+                <span>👍</span>
+                <span>🎉</span>
+            </div>
+        </div>
+
+        <div id="typing-indicator" style="display: none;">Escribiendo...</div>
+    </div>
+
+    <script>
+        // Función para agregar un mensaje al chat
+        function appendMessage(text, sender) {
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'message-container ${sender}';
+            
+            const message = document.createElement('div');
+            message.className = 'message ${sender}';
+            
+            const messageText = document.createElement('span');
+            messageText.className = 'message-text';
+            messageText.textContent = text;
+
+            const messageTime = document.createElement('span');
+            messageTime.className = 'message-time';
+            messageTime.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = '🗑';
+            
+            // Evento de eliminación del mensaje
+            deleteBtn.addEventListener('click', function() {
+                messageContainer.remove();
+                saveMessages(); // Guardar cambios después de eliminar
+           });
+
+           // Agregar texto y hora al mensaje
+           message.appendChild(messageText);
+           message.appendChild(messageTime);
+           message.appendChild(deleteBtn);
+           
+           // Agregar el mensaje al contenedor
+           messageContainer.appendChild(message);
+           
+           // Agregar el mensaje al chat
+           document.getElementById('chat-box').appendChild(messageContainer);
+           
+           // Desplazar hacia abajo el chat
+           document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+
+           saveMessages(); // Guardar cambios después de agregar un nuevo mensaje
+       }
+
+       // Función para guardar mensajes en localStorage
+       function saveMessages() {
+           const messages = [];
+           const containers = document.querySelectorAll('.message-container');
+           containers.forEach(container => {
+               const text = container.querySelector('.message-text').textContent;
+               const sender = container.classList.contains('sent') ? 'sent' : 'received';
+               messages.push({ text, sender });
+           });
+           localStorage.setItem('messages', JSON.stringify(messages));
+       }
+
+       // Función para cargar mensajes desde localStorage
+       function loadMessages() {
+           const messages = JSON.parse(localStorage.getItem('messages'));
+           if (messages) {
+               messages.forEach(msg => appendMessage(msg.text, msg.sender));
+           }
+       }
+
+       // Cargar mensajes al iniciar
+       loadMessages();
+
+       // Evento para enviar un mensaje
+       document.getElementById('sendChatBtn').addEventListener('click', function() {
+           const inputField = document.getElementById('message-input');
+           const text = inputField.value.trim();
+           
+           if (text) {
+               appendMessage(text, 'sent'); // Mensaje enviado
+               inputField.value = ''; // Limpiar campo después del envío
+               appendMessage("", 'received'); // Simular respuesta recibida
+               // Puedes quitar esta línea si no deseas respuestas automáticas.
+           }
+       });
+   </script>
+   <script src="script2.js"></script>
+</body>
+</html>
