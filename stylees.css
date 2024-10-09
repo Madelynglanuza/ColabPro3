@@ -1,5 +1,5 @@
 body {
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans MS", cursive, sans-serif;
     margin: 0;
     padding: 20px;
     background-color: #ffffff;
@@ -19,7 +19,8 @@ h1 {
 }
 
 .container {
-    max-width: 800px;
+    min-width: 60rem;
+    max-width: 80vw;
     margin: auto;
     background: white;
     padding: 20px;

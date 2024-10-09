@@ -1,0 +1,26 @@
+.form-input {
+    text-align: start;
+    color: #0f0f0f;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    min-width: 8rem;
+
+    &:disabled {
+        font-size: 16px;
+        padding: 0;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+}
+
+td {
+    text-align: center;
+    vertical-align: center;
+}
+
+td input {
+    width: 100%;
+    box-sizing: border-box;
+}

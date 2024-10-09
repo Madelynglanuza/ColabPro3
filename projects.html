@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="stylees.css">
     <title>Lista de Proyectos Colaborativos</title>
     <link rel="icon" href="logo (1).ico">
+    <link rel="stylesheet" href="form_styles.css">
 </head>
 <body>
     <div class="container">
@@ -31,7 +32,7 @@
             </tbody>
         </table>
     </div>
-    <script> src="script.js"></script>
+    <script src="script.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -39,25 +40,42 @@
         });
 
         function loadProjects() {
-            const projects = getProjects();
-            const projectsBody = document.getElementById('projectsBody');
+    const projects = getProjects();
+    const projectsBody = document.getElementById('projectsBody');
+    projectsBody.innerHTML = ''; // Limpiar el contenido existente
 
-            projects.forEach(project => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${project.title}</td>
-                    <td>${project.description}</td>
-                    <td><span class="status ${project.status}">${project.status === 'ongoing' ? 'En curso' : 'Planificado'}</span></td>
-                    <td>${project.responsible}</td>
-                    <td>${new Date(project.startDate).toLocaleDateString()} - ${new Date (project.endDate).toLocaleDateString()}</td>
-                    <td>
-                        <button onclick="editProject(this)">Editar</button>
-                        <button onclick="deleteProject(this)">Eliminar</button>
-                    </td>
-                `;
-                projectsBody.appendChild(row);
-            });
-        }
+    const fragment = document.createDocumentFragment();
+
+    projects.forEach((project, index) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td><input type="text" value="${project.title}" id="title-${index}" disabled class="form-input"></td>
+            <td><input type="text" value="${project.description}" id="desc-${index}" disabled class="form-input"></td>
+            <td>
+                <select name="status" disabled id="status-${index}" class="form-input">
+                    <option value="ongoing" ${project.status === 'ongoing' ? 'selected' : ''}>En curso</option>
+                    <option value="planned" ${project.status === 'planned' ? 'selected' : ''}>Planificado</option>
+                </select>
+            </td>
+            <td>${project.responsible}</td>
+            <td>
+                <span>
+                    <input type="date" value="${project.startDate}" id="startDate-${index}" disabled class="form-input">
+                    <input type="date" value="${project.endDate}" id="endDate-${index}" disabled class="form-input">
+                </span>
+            </td>
+            <td>
+                <button onclick="editProject(this.parentElement.parentElement, ${index})" id="edit-${index}">Editar</button>
+                <button onclick="deleteProject(this.parentElement.parentElement, ${index})" id="delete-${index}">Eliminar</button>
+            </td>
+        `;
+
+        fragment.appendChild(row);
+    });
+
+    projectsBody.appendChild(fragment);
+}
 
         function getProjects() {
             const projects = localStorage.getItem('projects');
