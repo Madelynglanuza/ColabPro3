@@ -804,17 +804,46 @@ function filterProjects() {
 }
 
 // Función para editar un proyecto
-function editProject(button) {
-    const row = button.parentNode.parentNode; // Obtener la fila del botón
-    const title = row.cells[0].textContent;
-    const description = row.cells[1].textContent;
+function editProject(row, index) {
+    const titleInput = document.getElementById(`title-${index}`);
+    const descriptionInput = document.getElementById(`desc-${index}`);
+    const statusInput = document.getElementById(`status-${index}`);
+    const startDateInput = document.getElementById(`startDate-${index}`);
+    const endDateInput = document.getElementById(`endDate-${index}`);
+    const editButton = document.getElementById(`edit-${index}`);
+    const originalEditButtonClick = editButton.onclick;
 
-    // Llenar el formulario de edición
-    document.getElementById('editProjectTitle').value = title;
-    document.getElementById('editProjectDescription').value = description;
+    const inputs = [titleInput, descriptionInput, statusInput, startDateInput, endDateInput];
 
-    // Mostrar el formulario de edición
-    document.getElementById('editProjectForm').style.display = 'block';
+    inputs.forEach(input => input.disabled = false);
+    editButton.textContent = 'Guardar';
+
+    editButton.onclick = function() {
+        try {
+            saveEdit(index, titleInput.value, descriptionInput.value, statusInput.value, startDateInput.value, endDateInput.value);
+
+            inputs.forEach(input => input.disabled = true);
+            editButton.textContent = 'Editar';
+            editButton.onclick = originalEditButtonClick;
+        } catch (error) {
+            console.error('Error saving project:', error);
+            alert('Error saving project. Please try again.');
+        }
+    };
+}
+
+function saveEdit(index, title, description, status, startDate, endDate) {
+    // localStorage.getItem('projects')
+    const projects = JSON.parse(localStorage.getItem('projects')) || [];
+    console.log(projects[index]);
+
+    projects[index].title = title;
+    projects[index].description = description;
+    projects[index].status = status;
+    projects[index].startDate = startDate;
+    projects[index].endDate = endDate;
+
+    localStorage.setItem('projects', JSON.stringify(projects));
 }
 
 // Función para actualizar un proyecto
