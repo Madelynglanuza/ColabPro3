@@ -803,6 +803,13 @@ function filterProjects() {
     }
 }
 
+function showDetails(id) {
+
+
+    window.location.href = 'project-detalles.html?id=' + id;
+}
+
+
 // Función para editar un proyecto
 function editProject(row, index) {
     const titleInput = document.getElementById(`title-${index}`);
@@ -1411,6 +1418,15 @@ function loadProjects() {
 function getProjects() {
     const projects = localStorage.getItem('projects');
     return projects ? JSON.parse(projects) : [];
+}
+
+/**
+ * @param id
+ * @returns Project, puede ser nulo si no se encuentra un valor con el id proporcionado
+ */
+function getProjectById(id) {
+    const projects = getProjects();
+    return projects.find(project => project.id === id);
 }
 
 function filterProjects() {
