@@ -61,7 +61,7 @@ function appendFileMessage(fileName, sender) {
         const fileContent = localStorage.getItem(fileName);
         const link = document.createElement('a');
         link.href = fileContent;
-        link.download = 'archivo_guardado';
+        link.download = fileName;
         link.click();
     });
 
@@ -91,8 +91,6 @@ function appendFileMessage(fileName, sender) {
     document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
 
 
-
-
     saveMessages();
 }
 
@@ -101,9 +99,12 @@ function saveMessages() {
     const messages = [];
     const containers = document.querySelectorAll('.message-container');
     containers.forEach(container => {
-        const text = container.querySelector('.message-text').textContent;
+        const chatElement = container.querySelector('.message-text');
+        const text = chatElement.style.color === 'blue' ? chatElement.textContent.replaceAll('Archivo: ', '') : chatElement.textContent;
+
+        console.log('text', text);
         const sender = container.classList.contains('sent') ? 'sent' : 'received';
-        const type = container.querySelector('.message-text').style.color === 'blue' ? 'file' : 'text';
+        const type = chatElement.style.color === 'blue' ? 'file' : 'text';
         messages.push({text, sender, type});
     });
     localStorage.setItem('messages', JSON.stringify(messages));
@@ -117,7 +118,7 @@ function loadMessages() {
             if (msg.type === 'text') {
                 appendMessage(msg.text, msg.sender);
             } else {
-                appendFileMessage(msg.text.split(' ')[1], msg.sender);
+                appendFileMessage(msg.text, msg.sender);
             }
         });
     }
@@ -175,7 +176,7 @@ document.getElementById('file-button').addEventListener('click', function () {
 document.getElementById('file-input').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
-        const fileName = `file-${Math.floor(Math.random() * 1000)}`
+        const fileName = `${new Date().getTime()}_${file.name}`;
         const reader = new FileReader();
         reader.onload = function (e) {
             const fileContent = e.target.result;
