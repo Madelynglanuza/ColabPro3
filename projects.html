@@ -41,6 +41,8 @@
 
         function loadProjects() {
     const projects = getProjects();
+
+    console.log(projects);
     const projectsBody = document.getElementById('projectsBody');
     projectsBody.innerHTML = ''; // Limpiar el contenido existente
 
@@ -66,6 +68,7 @@
                 </span>
             </td>
             <td>
+                <button onclick="showDetails(${project.id})">Detalles</button>
                 <button onclick="editProject(this.parentElement.parentElement, ${index})" id="edit-${index}">Editar</button>
                 <button onclick="deleteProject(this.parentElement.parentElement, ${index})" id="delete-${index}">Eliminar</button>
             </td>
