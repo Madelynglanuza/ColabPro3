@@ -1,0 +1,135 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: rgb(14, 37, 83);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: aquamarine;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 34px;
+}
+#profilePicPreview {
+    display: none; /* Ocultar la vista previa inicialmente */
+    max-width: 150px; /* Tamaño máximo de la imagen */
+    margin-top: 10px; /* Espaciado superior */
+}
+form input[type="text"], form input[type="email"], form input[type="password"] {
+    width: 200px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    align-items: center;
+}
+form {
+    background-color: #e813a126;
+    border: 1px solid #c767aa;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    max-width: 400;
+    margin: 20px auto;
+    width: 420;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+/* Ocultar el input file */
+#profilePic {
+    display: none; /* Ocultar el campo de entrada */
+}
+
+/* Estilo para el botón personalizado */
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #8a49975f;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    border: none;
+}
+
+h1, h2 {
+    color: #2acef7;
+    text-align: center;
+
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Hacer que las imágenes sean responsivas */
+img {
+    max-width: 100%; /* La imagen no excederá el ancho del contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+}
+
+/* Estilo general para inputs y selects */
+input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+    width: 100%; /* Los inputs ocuparán todo el ancho disponible */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 5px; /* Espaciado superior */
+}
+
+/* Botón responsive */
+button {
+    width: 100%; /* Botón ocupa todo el ancho disponible */
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries para ajustar estilos en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Menos padding en pantallas pequeñas */
+    }
+}

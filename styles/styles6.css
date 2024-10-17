@@ -1,0 +1,197 @@
+body {
+    font-family: "Comic Sans MS";
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    width: 400%;
+    max-width: 800px;
+    margin: 50px auto;
+    border: 1px solid #b0d800;
+    border-radius: 5px;
+    background: rgb(215, 212, 212);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.back-button, .continue-button, .fullscreen-button {
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #070907;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: rgb(50, 96, 75);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+#send-button, #emoji-button, #file-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.chat-header {
+    background-color: #034b02;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header a, .chat-header button {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.chat-header h2 {
+    margin: 0;
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #191f61;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.options-menu {
+    display: none;
+    position: absolute;
+    background-color: rgb(209, 24, 24);
+    border: 1px solid #40de18;
+    z-index: 1;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.three-dots {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+    color: #000000;
+}
+
+.emoji-picker {
+    display: none;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ff0000;
+    z-index: 1;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.emoji-picker span {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+/* Estilo del texto del mensaje */
+.message-text {
+    display: block;
+    color: #000000;
+}
+
+.message-time {
+    font-size: 0.8em;
+    color: #253455;
+    margin-top: 5px;
+    text-align: right; /* Alinear el tiempo a la derecha para mensajes enviados */
+}
+
+.message-container.received .message-time {
+    text-align: left; /* Alinear el tiempo a la izquierda para mensajes recibidos */
+}
+
+/* Hacer que las imágenes sean responsivas */
+img {
+    max-width: 100%; /* La imagen no excederá el ancho del contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+}
+
+/* Estilo general para inputs y selects */
+input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+    width: 100%; /* Los inputs ocuparán todo el ancho disponible */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 5px; /* Espaciado superior */
+}
+
+/* Botón responsive */
+button {
+    width: 100%; /* Botón ocupa todo el ancho disponible */
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries para ajustar estilos en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Menos padding en pantallas pequeñas */
+    }
+}

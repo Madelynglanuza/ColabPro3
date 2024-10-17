@@ -1,0 +1,187 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos del encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.btn, .add-task {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover, .add-task:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos de la barra de progreso */
+.progress-summary {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    background-color: #76c7c0;
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Estilos de la lista de tareas */
+.task-list {
+    margin: 20px 0;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.tasks {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tasks li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasks li button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tasks li button:hover {
+    background-color: #218838;
+}
+
+/* Estilos del registro de actividades */
+.activity-log {
+    margin: 20px 0;
+}
+
+.activity-log ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.activity-log li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Estilos del formulario de agregar tarea */
+#addTaskForm {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#addTaskForm input, 
+#addTaskForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#addTaskForm button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#addTaskForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Hacer que las imágenes sean responsivas */
+img {
+    max-width: 100%; /* La imagen no excederá el ancho del contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+}
+
+/* Estilo general para inputs y selects */
+input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+    width: 100%; /* Los inputs ocuparán todo el ancho disponible */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 5px; /* Espaciado superior */
+}
+
+/* Botón responsive */
+button {
+    width: 100%; /* Botón ocupa todo el ancho disponible */
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries para ajustar estilos en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Menos padding en pantallas pequeñas */
+    }
+}
