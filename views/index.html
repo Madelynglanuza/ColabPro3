@@ -1,108 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ColabPro - Gestión de Proyectos Colaborativos</title>
-    <link rel="icon" href="../logo%20(1).ico">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" href="../images/icon.ico">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/global.css">
 </head>
 <body>
-    <header>
-        <h1 class="app-name">ColabPro</h1><br><br><br><br>
-        <nav>
-            <ul class="icon-list">
-                <li>
-                    <a href="projects.html">
-                        <img src="../images/portapapeles%20(1).png" alt="Lista de Proyectos" class="icon">
-                        <span>Lista de Proyectos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="project-detalles.html">
-                        <img src="../images/plan-de-proyecto.png" alt="Detalles del Proyecto" class="icon">
-                        <span>Detalles del Proyecto</span>
-                    </a>
-                </li><br><br><br><br><br><br><br><br><br><br>
-                <li>
-                    <a href="create-project.html">
-                        <img src="../images/signo-de-mas.png" alt="Crear Nuevo Proyecto" class="icon">
-                        <span>Crear Nuevo Proyecto</span>
-                    </a>
-                </li><br><br><br><br><br><br><br><br><br><br>
-                <li>
-                    <a href="team-members.html">
-                        <img src="../images/equipo.png" alt="Miembros del Equipo" class="icon">
-                        <span>Miembros del Equipo</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="chat.html">
-                        <img src="../images/chats.png" alt="Chat" class="icon">
-                        <span>Chat</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar.html">
-                        <img src="../images/calendario.png" alt="Calendario" class="icon">
-                        <span>Calendario</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="progress-tracking.html">
-                        <img src="../images/seguimiento%20(2).png" alt="Seguimiento del Progreso" class="icon">
-                        <span>Seguimiento del Progreso</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="perfil.html">
-                        <img src="../images/usuario.png" alt="Perfil" class="icon">
-                        <span>Perfil</span>
-                    </a>
-                </li><br><br><br><br><br><br><br><br><br><br>
-            </ul>
-        </nav>
-    </header>
-    <br>
-    <main>
-        <button id="registerBtn">Registrarse</button>
-        <form id="registerForm" style="display: none;">
-            <h2>Registro</h2>
-            <input type="text" placeholder="Nombre">
-            <input type="text" placeholder="Apellido">
-            <input type="email" placeholder="Correo" id="emailField" value="">
-            <input type="password" placeholder="Contraseña" id="passwordField" value="">
-            <input type="password" placeholder="Confirmar Contraseña">
-            <input type="submit" class="btn" value="Enviar">
-        </form>
-    </main>
-    <div id="chatBox"></div>
+<header>
+    <nav class="nav-bar">
+        <div class="title_container">
+            <h1 class="title_text">ColabPro</h1>
+        </div>
+        <div class="user_container">
+            <div class="auth_section">
+                <a href="#" class="button auth-link">Iniciar Sesión</a>
+                <a href="#" class="button auth-link">Registrarse</a>
+            </div>
+        </div>
+    </nav>
 
-    <script src="../scripts/script.js"></script>
-    <script src="../scripts/server.js"></script>
-    <script src="../scripts/db.js"></script>
-    <script src="projectRoutes.js"></script>
-    <script src="taskRoutes.js"></script>
-    <script src="userRoutes.js"></script>
-    <script src="chatRoutes.js"></script>
-    <script src="notificationRoutes.js"></script>
-    <script src="fileRoutes.js"></script>
-    <script src="feedbackRoutes.js"></script>
-    <script src="teamMemberRoutes.js"></script>
-    <script src="calendarEventRoutes.js"></script>
-    <script src="User.js"></script>
-    <script src="Project.js"></script>
-    <script src="Task.js"></script>
-    <script src="Comment.js"></script>
-    <script src="ChatMessage.js"></script>
-    <script src="Notification.js"></script>
-    <script src="File.js"></script>
-    <script src="Feedback.js"></script>
-    <script src="TeamMember.js"></script>
-    <script src="CalendarEvent.js"></script>
-    <script> document.getElementById('registerBtn').onclick = function() {
-        document.getElementById('registerForm').style.display = 'block';
-    };
-</script>
+    <ul class="panel_container">
+        <li class="panel_item">
+            <a href="projects.html" id="project_list">
+                <img src="../images/portapapeles%20(1).png" alt="Lista de Proyectos" class="panel_item--icon">
+                <span class="panel_item--text">Lista de Proyectos</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="project-detalles.html" id="project_details">
+                <img src="../images/plan-de-proyecto.png" alt="Detalles del Proyecto" class="panel_item--icon">
+                <span class="panel_item--text">Detalles del Proyecto</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="create-project.html" id="create_project">
+                <img src="../images/signo-de-mas.png" alt="Crear Nuevo Proyecto" class="panel_item--icon">
+                <span class="panel_item--text">Crear Nuevo Proyecto</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="team-members.html" id="team_members">
+                <img src="../images/equipo.png" alt="Miembros del Equipo" class="panel_item--icon">
+                <span class="panel_item--text">Miembros del Equipo</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="chat.html" id="chat">
+                <img src="../images/chats.png" alt="Chat" class="panel_item--icon">
+                <span class="panel_item--text">Chat</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="calendar.html" id="calendar">
+                <img src="../images/calendario.png" alt="Calendario" class="panel_item--icon">
+                <span class="panel_item--text">Calendario</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="progress-tracking.html" id="progress_tracking">
+                <img src="../images/seguimiento%20(2).png" alt="Seguimiento del Progreso" class="panel_item--icon">
+                <span class="panel_item--text">Seguimiento del Progreso</span>
+            </a>
+        </li>
+        <li class="panel_item">
+            <a href="perfil.html" id="profile">
+                <img src="../images/usuario.png" alt="Perfil" class="panel_item--icon">
+                <span class="panel_item--text">Perfil</span>
+            </a>
+        </li>
+    </ul>
+</header>
+
 </body>
 </html>

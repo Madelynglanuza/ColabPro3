@@ -1,0 +1,87 @@
+/* Variables */
+@import url('variables.css');
+
+body {
+    background-color: var(--bg-color);
+}
+
+header {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    gap: 10rem;
+}
+
+.nav-bar {
+    flex: 1;
+    height: 10vh;
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: end;
+    align-items: end;
+    flex-direction: column;
+
+    .title_container {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+
+        .auth_section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+    }
+}
+
+.auth-link {
+    font-size: 1.5rem;
+}
+
+.panel_container {
+    flex: 8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 4rem;
+}
+
+.panel_item {
+    min-width: 6rem;
+
+    a {
+        align-items: center;
+        font-size: 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        justify-items: center;
+        flex-direction: row;
+        text-decoration: none;
+        color: var(--color-grey-light-1);
+    }
+}
+
+.panel_item:hover {
+    transform: translateY(-0.5rem);
+    transition: transform 0.3s ease;
+}
+
+.panel_item--icon {
+    height: 5rem;
+}
