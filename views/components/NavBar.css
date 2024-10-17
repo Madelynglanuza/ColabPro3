@@ -28,6 +28,7 @@
 
     .nav-link {
         text-decoration: none;
+        text-transform: uppercase;
         color: var(--color-grey-light-1);
     }
 

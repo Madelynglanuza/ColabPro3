@@ -11,5 +11,14 @@
     --color-grey-dark-2: #777;
     --color-grey-dark-3: #999;
     --bg-color: #1B1D31;
+    --color-danger: #dc3545;
+    --color-success: #28a745;
+    --color-warning: #ffc107;
+
+
+    /** Shadows */
+    --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-darker: 0 4px 20px rgba(0, 0, 0, 0.2);
 
 }
