@@ -36,15 +36,31 @@
         margin: 5px 0;
         border-radius: 5px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         box-shadow: var(--shadow-light);
+        gap: 3rem;
+
+        .project-list__title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            width: 8rem;
+            flex: 2;
+        }
+
+        .project-list__description {
+            font-size: 1.2rem;
+            font-weight: 400;
+            width: 20rem;
+            flex: 4;
+        }
 
 
         .project-list__info-container {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            flex: 1;
 
             .project-list__info {
                 display: flex;
@@ -62,6 +78,8 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            flex: 1;
+            flex-wrap: wrap;
         }
         .project-list__action {
             flex: 1;
