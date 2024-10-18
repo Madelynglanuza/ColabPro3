@@ -1,6 +1,6 @@
 export class Savable {
-    constructor(key) {
-        this.key = key;
+    constructor(id) {
+        this.id = id || Math.floor(Math.random() * 1000);
         if (new.target === Savable) {
             throw new Error('Class must implement constructor');
         }
@@ -26,4 +26,14 @@ export class Savable {
         return JSON.stringify(this.toJSON());
     }
 
+    toReference() {
+        return {
+            id: this.id,
+            reference: true
+        };
+    }
+
+    getKey() {
+        return this.key;
+    }
 }

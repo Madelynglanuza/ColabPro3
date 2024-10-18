@@ -1,9 +1,10 @@
 import { ProjectStatus } from './ProjectStatus.js';
 import {Savable} from "./Savable.js";
+import {TaskStatus} from "./TaskStatus.js";
 
 export class Project extends Savable {
 
-    constructor(id, title, description, status, members, startDate, endDate, tasks_ids) {
+    constructor(id, title, description, status, members, startDate, endDate, tasks) {
         /**
          * @param {number} id
          * @param {string} title
@@ -17,27 +18,33 @@ export class Project extends Savable {
          * @constructor
          */
 
-        super('projects');
-        this.id = id || Math.floor(Math.random() * 1000); // int
+        super( id);
         this.title = title || '';
         this.description = description || '';
         this.status = status || ProjectStatus.PLANNED;
         this.members = members || [];
         this.startDate = startDate || new Date();
         this.endDate = endDate || new Date();
-        this.tasks_ids = tasks_ids || [];
+        this.tasks = tasks || [];
     }
 
-    addTaskId(taskId) {
-        this.tasks.push(taskId);
+    addTask(task) {
+        task.project_id = this.id;
+        this.tasks.push(task);
     }
 
     removeTask(taskId) {
-        this.tasks = this.tasks.filter(t => t !== taskId);
+        this.tasks = this.tasks.filter(t => t.id !== taskId);
     }
 
-    getTasksIds() {
+    getTasks() {
         return this.tasks;
+    }
+
+    getProgress() {
+        const totalTasks = this.tasks.length;
+        const completedTasks = this.tasks.filter(task => task.status === TaskStatus.COMPLETED).length;
+        return totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
     }
 
     toJSON() {
@@ -49,7 +56,7 @@ export class Project extends Savable {
             members: this.members,
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString(),
-            tasks_ids: this.tasks_ids
+            tasks: this.tasks,
         };
     }
 
@@ -62,7 +69,7 @@ export class Project extends Savable {
             json.members,
             new Date(json.startDate),
             new Date(json.endDate),
-            json.tasks_ids
+            json.tasks
         );
     }
 
@@ -79,11 +86,17 @@ export class Project extends Savable {
             this.members,
             this.startDate,
             this.endDate,
-            this.tasks_ids
+            this.tasks.map(task => task.clone())
         );
     }
 
     toString() {
         return JSON.stringify(this.toJSON());
+    }
+
+    toReference() {
+        let result =  super.toReference()
+        result['key'] = 'Project';
+        return result;
     }
 }

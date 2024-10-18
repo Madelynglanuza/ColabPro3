@@ -1,5 +1,9 @@
 import {Project} from '../modules/project.js';
+import {ProjectStatus} from '../modules/projectStatus.js';
 import {LocalStorage} from '../modules/localStorage.js';
+import {TaskStatus} from "../modules/TaskStatus.js";
+import {Task} from "../modules/Task.js";
+
 
 const localStorage = new LocalStorage();
 
@@ -19,12 +23,12 @@ function renderProjects(projects) {
         clone.querySelector('[data-field="description"]').textContent = project.description;
         clone.querySelector('[data-field="members"]').textContent = project.members.length;
 
-        //status
-
         clone.querySelector('[data-field="status_icon"]').classList.add(project.status.className);
         clone.querySelector('[data-field="status"]').textContent = project.status.value;
 
         clone.querySelector('[data-field="deadline"]').textContent = project.endDate.toDateString();
+        clone.querySelector('[data-field="progress-container"]').title = "Progreso: " + project.getProgress() + '%';
+        clone.querySelector('[data-field="progress"]').style.width = project.getProgress() + '%';
 
         //details-btn
         const detailsBtn = clone.querySelector('[data-field="details-btn"]');
@@ -41,7 +45,11 @@ function renderProjects(projects) {
         //delete-btn
         const deleteBtn = clone.querySelector('[data-field="delete-btn"]');
         deleteBtn.addEventListener('click', function () {
-            localStorage.removeItemByInstance(project);
+            project.tasks.forEach(task => {
+                localStorage.removeItemById(task.id, Task);
+            });
+            localStorage.removeItemById(project.id, Project);
+
             renderProjects(localStorage.getAllItems(Project));
         });
 

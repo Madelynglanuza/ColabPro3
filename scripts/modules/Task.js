@@ -15,8 +15,7 @@ export class Task extends Savable {
          * @constructor
          */
 
-        super('tasks');
-        this.id = id || Math.floor(Math.random() * 1000);
+        super(id);
         this.title = title || '';
         this.description = description || '';
         this.status = status || TaskStatus.PLANNED;
@@ -71,5 +70,11 @@ export class Task extends Savable {
         this.responsible = responsible || this.responsible;
         this.startDate = startDate || this.startDate;
         this.endDate = endDate || this.endDate;
+    }
+
+    toReference() {
+        let result = super.toReference();
+        result.key = 'Task';
+        return result;
     }
 }
