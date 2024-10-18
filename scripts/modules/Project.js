@@ -3,7 +3,7 @@ import {Savable} from "./Savable.js";
 
 export class Project extends Savable {
 
-    constructor(id, title, description, status, responsible, startDate, endDate, tasks_ids) {
+    constructor(id, title, description, status, members, startDate, endDate, tasks_ids) {
         /**
          * @param {number} id
          * @param {string} title
@@ -22,7 +22,7 @@ export class Project extends Savable {
         this.title = title || '';
         this.description = description || '';
         this.status = status || ProjectStatus.PLANNED;
-        this.responsible = responsible || '';
+        this.members = members || [];
         this.startDate = startDate || new Date();
         this.endDate = endDate || new Date();
         this.tasks_ids = tasks_ids || [];
@@ -46,7 +46,7 @@ export class Project extends Savable {
             title: this.title,
             description: this.description,
             status: this.status,
-            responsible: this.responsible,
+            members: this.members,
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString(),
             tasks_ids: this.tasks_ids
@@ -59,7 +59,7 @@ export class Project extends Savable {
             json.title,
             json.description,
             json.status,
-            json.responsible,
+            json.members,
             new Date(json.startDate),
             new Date(json.endDate),
             json.tasks_ids
@@ -76,7 +76,7 @@ export class Project extends Savable {
             this.title,
             this.description,
             this.status,
-            this.responsible,
+            this.members,
             this.startDate,
             this.endDate,
             this.tasks_ids

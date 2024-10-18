@@ -1,6 +1,18 @@
 export const ProjectStatus = Object.freeze({
-    OPEN: 'open',
-    ONGOING: 'ongoing',
-    PLANNED: 'planned',
-    COMPLETED: 'completed'
+    OPEN: {
+        value: "Abierto",
+        className: "success"
+    },
+    ONGOING: {
+        value: "En curso",
+        className: "warning"
+    },
+    PLANNED: {
+        value: "Planificado",
+        className: "primary"
+    },
+    COMPLETED: {
+        value: "Completado",
+        className: "info"
+    },
 });

@@ -1,38 +1,40 @@
 import {Savable} from "./Savable.js";
 
 export class LocalStorage {
-    setItem(key, value) {
-        window.localStorage.setItem(key, JSON.stringify(value));
+    constructor() {
+        this.storage = window.localStorage;
     }
 
-    getItem(key) {
-        return JSON.parse(window.localStorage.getItem(key) || '[]');
+    addItem(item) {
+        const key = `${item.constructor.name.toLowerCase()}_storage`;
+        const items = this.getAllItems(item.constructor);
+        items[item.id] = item.toJSON(); // Serialize the item
+        this.storage.setItem(key, JSON.stringify(items));
     }
 
-    getByObjectType(objectType) {
-        if (!objectType || !(Savable.isPrototypeOf(objectType))) {
-            throw new Error('Invalid object type');
+    removeItemById(id, itemClass) {
+        const key = `${itemClass.name.toLowerCase()}_storage`;
+        const items = this.getAllItems(itemClass);
+        if (items[id]) {
+            delete items[id];
+            this.storage.setItem(key, JSON.stringify(items));
         }
-        return this.getAllItems(objectType.prototype.key).map(object => objectType.fromJSON(object));
-    }
-    getAllItems(key) {
-        return Object.keys(window.localStorage)
-            .filter(k => k.includes(key))
-            .map(k => JSON.parse(window.localStorage.getItem(k)));
-    }
-    getItemByFilter(key, filter) {
-        return this.getItem(key).filter(filter);
-    }
-    removeItem(key)  {
-        window.localStorage.removeItem(key);
-    }
-    clear() {
-        window.localStorage.clear();
     }
 
-    removeByFilter(key, filter) {
-        const items = this.getItem(key);
-        const filteredItems = items.filter(filter);
-        this.setItem(key, filteredItems);
+    getAllItems(itemClass) {
+        const key = `${itemClass.name.toLowerCase()}_storage`;
+        const items = JSON.parse(this.storage.getItem(key)) || {};
+        // Deserialize the items
+        const deserializedItems = {};
+        for (const id in items) {
+            deserializedItems[id] = itemClass.fromJSON(items[id]);
+        }
+        return deserializedItems;
+    }
+
+    getItemById(id, itemClass) {
+        const key = `${itemClass.name.toLowerCase()}_storage`;
+        const items = this.getAllItems(itemClass);
+        return items[id] || null;
     }
 }
