@@ -47,17 +47,35 @@ export class LocalStorage {
     }
 
     replaceReferences(item) {
-        for (const key in item) {
-            if (item[key] && item[key].id && item[key].key && item[key].reference) {
-                const itemClass = LocalStorage.savable_classes[item[key].key];
-                item[key] = this.getItemById(item[key].id, itemClass);
-            } else if (Array.isArray(item[key])) {
-                item[key].forEach((element, index) => {
-                    if (element && element.id && element.key && element.reference) {
-                        const itemClass = LocalStorage.savable_classes[element.key];
-                        item[key][index] = this.getItemById(element.id, itemClass);
+        const replaceReference = (element) => {
+            if (element && element.id && element.key && element.reference) {
+                const itemClass = LocalStorage.savable_classes[element.key];
+                return this.getItemById(element.id, itemClass) || null;
+            }
+            return element;
+        };
+
+        const handleReference = (key) => {
+            if (Array.isArray(item[key])) {
+                item[key] = item[key].map(replaceReference).filter(element => {
+                    if (element === null) {
+                        console.error(`Reference not found for ${item.constructor.name} ${item.id}`);
+                        return false;
                     }
+                    return true;
                 });
+            } else {
+                item[key] = replaceReference(item[key]);
+                if (item[key] === null) {
+                    delete item[key];
+                    console.error(`Reference not found for ${item.constructor.name} ${item.id}`);
+                }
+            }
+        };
+
+        for (const key in item) {
+            if (item.hasOwnProperty(key)) {
+                handleReference(key);
             }
         }
         return item;
