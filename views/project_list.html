@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ColabPro - Lista de proyectos</title>
+    <script type="module" src="components/NavBar.js"></script>
+    <link rel="stylesheet" href="../styles/project_list.css">
+<!--    Font Awesome-->
+    <script src="https://kit.fontawesome.com/5782090849.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<colabpro-navbar></colabpro-navbar>
+<h1 class="light-bg centered mb-2">Lista de Proyectos</h1>
+
+<div class="container">
+    <div class="search-bar__container">
+        <label for="search_bar" class="search-bar__label">Buscar proyecto:</label>
+        <input type="text" id="search_bar" class="search-bar" placeholder="Escriba el nombre del proyecto a buscar...">
+    </div>
+
+    <div class="project-list_container">
+        <ul class="project-list" data-field="project-list">
+        </ul>
+    </div>
+</div>
+<template id="project-template">
+    <li class="project-list__item">
+        <h2 class="project-list__title" data-field="title">Proyecto 1</h2>
+        <p class="project-list__description" data-field="description">Descripcion del proyecto 1</p>
+        <ul class="project-list__info-container">
+            <li class="project-list__info" title="Miembros en el proyecto">
+                <i class="fa-regular fa-user project-list__icon"></i>
+                <p class="project-list__text" data-field="members">3</p>
+            </li>
+            <li class="project-list__info" title="Estado del proyecto">
+                <i class="fa-solid fa-circle project-list__icon success" data-field="status_icon"></i>
+                <p class="project-list__text" data-field="status">Activo</p>
+            </li>
+            <li class="project-list__info" title="Fecha límite del proyecto">
+                <i class="fa-regular fa-calendar project-list__icon"></i>
+                <p class="project-list__text" data-field="deadline">01/01/2022</p>
+            </li>
+            <li class="project-list__info" title="Progreso">
+                <div class="project-list__progress" data-field="progress-container">
+                    <div class="project-list__progress-bar" data-field="progress"></div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="project-list__actions">
+            <button class="project-list__action" title="Ver detalles" data-field="details-btn">
+                <i class="fa-regular fa-window-maximize project-list__ico"></i>
+            </button>
+            <button class="project-list__action" title="Ver mensajes" data-field="chat-btn">
+                <i class="fa-regular fa-comment project-list__ico"></i>
+            </button>
+            <button class="project-list__action bg-danger" title="Eliminar" data-field="delete-btn">
+                <i class="fa-regular fa-trash-can project-list__icon"></i>
+            </button>
+        </div>
+    </li>
+</template>
+
+<script type="module" src="../scripts/main.js"></script>
+<script type="module" src="../scripts/views/project_list.js"></script>
+</body>
+</html>

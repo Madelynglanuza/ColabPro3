@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles3.css">
+    <title>Detalle del Proyecto - ColabPro</title>
+    <link rel="icon" href="../logo%20(1).ico">
+</head>
+<body>
+<div class="container">
+    <header>
+        <a class="btn" href="projects.html">Regresar</a>
+        <h1>Detalle del Proyecto</h1>
+        <a class="btn" href="create-project.html">Continuar</a>
+    </header>
+
+    <section class="project-info">
+        <h2>Información General</h2>
+        <p><strong>Nombre del Proyecto:</strong>
+        <p id="project_name"> Proyecto A</p></p>
+        <p><strong>Fecha de Inicio:</strong>
+        <p id="start_date"> 01/01/2024</p></p>
+        <p><strong>Fecha de Fin:</strong>
+        <p id="end_date"> 01/01/2025</p></p>
+        <p><strong>Estado:</strong>
+        <p id="status"> En curso</p></p>
+        <p><strong>Presupuesto:</strong>
+        <p id="budget"> C$2000</p></p>
+        <p><strong>Avance:</strong>
+        <p id="progress"> 50%</p></p>
+    </section>
+
+    <section class="team">
+        <h2>Equipo del Proyecto</h2>
+        <ul id="teamList">
+        </ul>
+    </section>
+
+    <section class="tasks">
+        <h2>Tareas y Hitos</h2>
+        <ul id="taskList">
+            <li>Tarea 1 - <strong>Estado:</strong> Completada</li>
+            <li>Tarea 2 - <strong>Estado:</strong> En progreso</li>
+            <li>Tarea 3 - <strong>Estado:</strong> Pendiente</li>
+        </ul>
+    </section>
+
+    <section class="documents">
+        <h2>Documentos y Archivos</h2>
+        <ul>
+            <li><a href="#">Documento de Requisitos</a></li>
+            <li><a href="#">Plan de Proyecto</a></li>
+            <li><a href="#">Informe de Progreso</a></li>
+        </ul>
+    </section>
+
+    <section class="calendar">
+        <h2>Calendario</h2>
+        <p>Eventos importantes y fechas de entrega se mostrarán aquí.</p>
+    </section>
+
+    <section class="chat">
+        <h2>Chat del Equipo</h2>
+        <div class="chat-box" id="chatBox">
+            <p><strong>Juan:</strong> ¿Cómo va la tarea 2?</p>
+            <p><strong>Ana:</strong> Estoy trabajando en ello, debería estar lista para el viernes.</p>
+        </div>
+        <input type="text" id="chatInput" placeholder="Escribe tu mensaje aquí...">
+        <button id="sendChatBtn">Enviar</button>
+    </section>
+</div>
+<header>
+    <nav>
+        <ul>
+            <li><a href="../scripts/server.js"></a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<footer>
+    <p>&copy; 2024 ColabPro. Todos los derechos reservados.</p>
+</footer>
+<script src="../scripts/script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+        if (projectId) {
+            loadProjectDetails(parseInt(projectId));
+        }
+    });
+
+
+    function loadProjectDetails(projectId) {
+        const project = getProjectById(projectId);
+        if (!project) {
+            return;
+        }
+        document.getElementById('project_name').textContent = project.title;
+        document.getElementById('start_date').textContent = project.startDate;
+        document.getElementById('end_date').textContent = project.endDate;
+        document.getElementById('status').textContent = project.status === 'planned' ? 'Planificado' : 'En curso';
+
+        document.getElementById('teamList').innerHTML = project.responsible.split(',').map((responsible) => {
+            return `<li>${responsible}</li>`;
+        }).join('');
+
+        console.log(project);
+    }
+</script>
+</body>
+</html>

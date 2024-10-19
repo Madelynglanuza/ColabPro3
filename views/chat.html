@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="icon" href="../logo%20(1).ico">
+    <link rel="stylesheet" href="../styles/styles6.css">
+
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-header">
+        <a class="btn" href="team-members.html">Regresar</a>
+        <h2 style="flex-grow: 1; text-align: center;">Chat</h2>
+        <button class="fullscreen-button" title="Pantalla Completa">Pantalla Completa</button>
+        <span class="three-dots" id="optionsButton">⋮</span> <!-- Tres puntos -->
+        <div class="options-menu" id="optionsMenu">
+            <button id="searchMessages">Buscar mensajes</button>
+            <button id="deleteMessages">Eliminar mensajes</button>
+            <button id="deleteFiles">Eliminar archivos</button>
+            <button id="videoCall">Video Llamada</button>
+            <button id="audioCall">Llamada Normal</button>
+        </div>
+        <a class="btn" href="calendar.html">Continuar</a>
+    </div>
+
+    <div class="chat-box" id="chat-box">
+        <!-- Aquí se mostrarán los mensajes -->
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Escribe tu mensaje...">
+        <button id="sendChatBtn">Enviar</button>
+        <button id="emoji-button">😊</button>
+        <input type="file" id="file-input" style="display: none;">
+        <button id="file-button">📁</button>
+        <div class="emoji-picker" id="emojiPicker">
+            <span>😊</span>
+            <span>😂</span>
+            <span>😍</span>
+            <span>😢</span>
+            <span>😡</span>
+            <span>😎</span>
+            <span>👍</span>
+            <span>🎉</span>
+        </div>
+    </div>
+
+    <div id="typing-indicator" style="display: none;">Escribiendo...</div>
+</div>
+
+<script src="../scripts/script2.js"></script>
+</body>
+</html>

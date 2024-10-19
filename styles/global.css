@@ -1,0 +1,90 @@
+.button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-primary);
+    color: var(--color-grey-light-1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+h1 {
+    color: var(--color-grey-light-1);
+    font-size: 4rem;
+    font-weight: 300;
+    text-transform: uppercase;
+
+}
+
+.light-bg {
+    background-color: var(--bg-color);
+    color: var(--color-grey-light-1);
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.mb-5 {
+    margin-bottom: 5rem;
+}
+
+.container {
+    width: 95vw;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-grey-light-1);
+    box-shadow: var(--shadow-light);
+    border-radius: 8px;
+}
+
+.bg-danger {
+    background-color: var(--color-danger) !important;
+    color: var(--color-grey-light-1) !important;
+}
+
+.bg-success {
+    background-color: var(--color-success) !important;
+    color: var(--color-grey-light-1) !important;
+}
+
+
+/* Colores */
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.warning {
+    color: var(--color-warning);
+}

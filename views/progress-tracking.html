@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento del Progreso de Tareas</title>
+    <link rel="icon" href="../logo%20(1).ico">
+    <link rel="stylesheet" href="../styles/styles8.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a class="btn" href="calendar.html">Regresar</a>
+            <h1>Seguimiento del Progreso de Tareas</h1>
+            <button class="add-task" onclick="showAddTaskForm()">Agregar Tarea</button>
+        </header>
+        
+        <section class="progress-summary">
+            <h2>Resumen del Progreso</h2>
+            <div class="progress-percentage">60%</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+        </section>
+
+        <section class="task-list">
+            <h2>Lista de Tareas</h2>
+            <input type="text" class="search-bar" placeholder="Buscar tarea..." onkeyup="filterTasks()">
+            <ul class="tasks" id="taskList"></ul>
+        </section>
+
+        <section class="activity-log">
+            <h2>Registro de Actividades</h2>
+            <ul class="log" id="activityLog"></ul>
+        </section>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../scripts/server.js"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="addTaskForm" style="display: none;">
+        <h2>Agregar Nueva Tarea</h2>
+        <input type="text" id="taskTitle" placeholder="Título de la tarea">
+        <textarea id="taskDescription" placeholder="Descripción de la tarea"></textarea>
+        <button onclick="addTask()">Agregar Tarea</button>
+        <button onclick="toggleAddTaskForm()">Cancelar</button>
+    </div>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
