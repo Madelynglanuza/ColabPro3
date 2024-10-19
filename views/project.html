@@ -4,8 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ColabPro - Detalles del proyecto</title>
+    <script type="module" src="components/NavBar.js"></script>
+    <!--    Font Awesome-->
+    <script src="https://kit.fontawesome.com/5782090849.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/project.css">
 </head>
 <body>
+<colabpro-navbar></colabpro-navbar>
+<h1 class="light-bg centered mb-2">Detalles del proyecto</h1>
+<main>
+    <div class="overview-container container">
+        <div class="overview-container__right">
+            <div class="overview-container__header">
+                <h2 class="overview-container__title" data-field="title">Proyecto 1</h2>
+            </div>
+            <div class="overview-container__details--container">
+                <div class="overview-container__details--header">
+                    <h2 class="overview-container__details--title">Detalles</h2>
+                    <button class="overview-container__details--edit-btn" title="Editar detalles" data-field="edit_btn">
+                        <i class="fa-regular fa-edit"></i>
+                    </button>
+                </div>
+                <ul class="overview-container__details--content">
+                    <li class="overview-container__details--item">
+                        <div>
+                            <p class="overview-container__details--label">Descripción:</p>
+                            <p class="overview-container__details--text" data-field="description">Descripción del
+                                proyecto 1 Lorem ipsum dolor sit
+                            </p>
+                        </div>
+                    </li>
+                    <li class="overview-container__details--item--container">
+                        <ul class="overview-container__details--item">
+                            <li>
+                                <p class="overview-container__details--label">Id:</p>
+                                <p class="overview-container__details--text" data-field="id">3</p>
+                            </li>
+                            <li>
+                                <p class="overview-container__details--label">Estado:</p>
+                                <p class="overview-container__details--text" data-field="status">Activo</p>
+                            </li>
+                        </ul>
 
+                        <ul class="overview-container__details--item">
+                            <li>
+                                <p class="overview-container__details--label">Fecha de Inicio:</p>
+                                <p class="overview-container__details--text" data-field="start-date">01/01/2022</p>
+                            </li>
+                            <li>
+                                <p class="overview-container__details--label">Fecha final:</p>
+                                <p class="overview-container__details--text" data-field="end-date">01/01/2022</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="overview-container__controls mt-2">
+                <button class="button overview-container__control" title="Nueva Tarea" data-field="new_task">
+                    <i class="fa-regular fa-plus"></i>
+                    <span class="overview-container__control--text">Nueva Tarea</span>
+                </button>
+                <button class="button overview-container__control" title="Chat" data-field="chat">
+                    <i class="fa-regular fa-comment"></i>
+                    <span class="overview-container__control--text">Chat</span>
+                </button>
+                <button class="button overview-container__control bg-danger" title="Eliminar" data-field="delete">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="overview-container__control--text">Eliminar</span>
+                </button>
+            </div>
+
+
+        </div>
+        <div class="overview-container__left">
+            <h2 class="overview-container__title mb-2">Progreso del proyecto</h2>
+            <div role="progressbar" type="circular" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                 data-field="progress"
+                 style="--size: 25rem"></div>
+        </div>
+    </div>
+
+    <div class="progress-container container">
+        <div class="progress-container__item" style="--value:70" data-field="tasks-container">
+            <h3 class="progress-container__title" data-field="tasks">7 de 10 Tareas completadas</h3>
+            <p class="progress-container__text"></p>
+            <div role="progressbar" type="bar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                 data-field="tasks-progress"
+                 style="--size: 100%"></div>
+        </div>
+        <div class="progress-container__item" style="--value:100" data-field="days-container">
+            <h3 class="progress-container__title" data-field="days">Días restantes: 0</h3>
+            <p class="progress-container__text"></p>
+            <div role="progressbar" type="bar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                 data-field="days-progress"
+                 style="--size: 100%"></div>
+        </div>
+    </div>
+    <script type="module" src="../scripts/main.js"></script>
+    <script type="module" src="../scripts/views/project.js"></script>
+</main>
 </body>
 </html>

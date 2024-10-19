@@ -1,0 +1,38 @@
+@keyframes growProgressBar {
+    0%, 33% {
+        --pgPercentage: 0;
+    }
+    100% {
+        --pgPercentage: var(--value);
+    }
+}
+
+@property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+
+div[role="progressbar"][type="circular"] {
+    --size: 20rem;
+    --fg: var(--color-primary);
+    --bg: var(--color-grey-light-1);
+    --secondary: var(--color-grey-light-1);
+    --pgPercentage: var(--value);
+    --bar: conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(closest-side, var(--secondary) 80%, transparent 0 99.9%, var(--secondary) 0), /*Esto es el circulo gris del centro*/
+    var(--bar);
+    font-size: calc(var(--size) / 5);
+    color: var(--fg);
+}
+
+div[role="progressbar"][type="circular"]::before {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) '%';
+}

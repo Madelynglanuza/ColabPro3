@@ -7,6 +7,15 @@ import {Task} from "../modules/Task.js";
 
 const localStorage = new LocalStorage();
 
+const project1 = new Project(1, 'Project 1', 'Description 1', ProjectStatus.PLANNED, [], new Date(2024, 9, 16), new Date(2024, 9, 25));
+
+project1.addTask(new Task(1, 'Task 1', 'Description 1', TaskStatus.COMPLETED, [], new Date(), new Date()));
+project1.addTask(new Task(2, 'Task 2', 'Description 2', TaskStatus.COMPLETED, [], new Date(), new Date()));
+project1.addTask(new Task(3, 'Task 3', 'Description 3', TaskStatus.PLANNED, [], new Date(), new Date()));
+project1.addTask(new Task(4, 'Task 4', 'Description 4', TaskStatus.COMPLETED, [], new Date(), new Date()));
+
+localStorage.addItem(project1);
+
 document.addEventListener('DOMContentLoaded', function () {
     const projects = localStorage.getAllItems(Project);
 
@@ -17,6 +26,7 @@ function renderProjects(projects) {
     const projectList = document.querySelector('[data-field="project-list"]');
     projectList.innerHTML = '';
     Object.values(projects).forEach(project => {
+        console.log(project);
         const template = document.getElementById('project-template').content;
         const clone = document.importNode(template, true);
         clone.querySelector('[data-field="title"]').textContent = project.title;
