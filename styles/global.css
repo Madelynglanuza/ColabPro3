@@ -1,16 +1,4 @@
-.button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--color-primary);
-    color: var(--color-grey-light-1);
-    cursor: pointer;
-    text-decoration: none;
-}
 
-.button:hover {
-    background-color: var(--color-primary-dark);
-}
 
 h1 {
     color: var(--color-grey-light-1);
@@ -18,6 +6,13 @@ h1 {
     font-weight: 300;
     text-transform: uppercase;
 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .light-bg {
@@ -51,9 +46,15 @@ h1 {
     margin-bottom: 5rem;
 }
 
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+
 .container {
     width: 95vw;
-    margin: 0 auto;
+    max-width: 95vw;
     padding: 20px;
     background-color: var(--color-grey-light-1);
     box-shadow: var(--shadow-light);
@@ -88,3 +89,11 @@ h1 {
 .warning {
     color: var(--color-warning);
 }
+
+/* Progres bar */
+
+.bar-medium {
+    font-size: 40rem;
+}
+
+
