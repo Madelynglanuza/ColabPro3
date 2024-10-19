@@ -22,8 +22,8 @@ function renderProjectDetails(project) {
     document.querySelector('[data-field="description"]').textContent = project.description;
     document.querySelector('[data-field="id"]').textContent = project.id;
     document.querySelector('[data-field="status"]').textContent = project.status.value;
-    document.querySelector('[data-field="start-date"]').textContent = project.startDate.toDateString();
-    document.querySelector('[data-field="end-date"]').textContent = project.endDate.toDateString();
+    document.querySelector('[data-field="start-date"]').textContent = project.startDate.toISOString().split('T')[0];
+    document.querySelector('[data-field="end-date"]').textContent = project.endDate.toISOString().split('T')[0];
     document.querySelector('[data-field="progress"]').style.setProperty("--value", getTasksProgress(project));
 
     document.querySelector('[data-field="tasks"]').textContent = `${completedTasks(project)} de ${project.tasks.length} Tareas completadas`;
