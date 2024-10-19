@@ -1,15 +1,18 @@
 @import "base.css";
 @import "global.css";
+@import "button.css";
 
 body {
     background-color: var(--bg-color);
+    display: flex;
+    gap: 10rem;
+    flex-direction: column;
 }
 
 header {
     display: flex;
-    height: 100vh;
+    height: 20vh;
     flex-direction: column;
-    gap: 10rem;
 }
 
 .nav-bar {
@@ -46,6 +49,15 @@ header {
     }
 }
 
+.main-container {
+    display: flex;
+    max-height: 90vh;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
 .auth-link {
     font-size: 1.5rem;
 }
@@ -59,6 +71,7 @@ header {
     flex-wrap: wrap;
     align-content: center;
     gap: 4rem;
+    max-width: 50vw;
 }
 
 .panel_item {
