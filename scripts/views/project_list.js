@@ -22,11 +22,31 @@ document.addEventListener('DOMContentLoaded', function () {
     renderProjects(projects);
 });
 
+document.getElementById("search_bar").addEventListener("keyup", function () {
+    const searchValue = this.value.toLowerCase();
+    const projects = localStorage.getAllItems(Project);
+
+    if (!searchValue.length) {
+        renderProjects(projects);
+        return;
+    }
+
+    let filteredProjects = Object.values(projects)
+        .filter(project => project.title.toLowerCase().includes(searchValue));
+
+    const result = {}
+
+    filteredProjects.forEach(project => {
+        result[project.id] = project;
+    });
+
+    renderProjects(result);
+});
+
 function renderProjects(projects) {
     const projectList = document.querySelector('[data-field="project-list"]');
     projectList.innerHTML = '';
     Object.values(projects).forEach(project => {
-        console.log(project);
         const template = document.getElementById('project-template').content;
         const clone = document.importNode(template, true);
         clone.querySelector('[data-field="title"]').textContent = project.title;
