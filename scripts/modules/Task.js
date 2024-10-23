@@ -52,7 +52,7 @@ export class Task extends Savable {
     }
 
     isEqual(task) {
-        return this.id === task.id;
+        return task instanceof Task && task.id === this.id;
     }
 
     clone() {

@@ -78,7 +78,7 @@ export class Project extends Savable {
     }
 
     isEqual(project) {
-        return this.id === project.id;
+        return project instanceof Project && project.id === this.id;
     }
 
     clone() {
