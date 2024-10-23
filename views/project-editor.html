@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ColabPro - Editor de proyectos</title>
+    <link rel="stylesheet" href="../styles/project-editor.css">
+    <script type="module" src="components/NavBar.js"></script>
+    <!--    Font Awesome-->
+    <script src="https://kit.fontawesome.com/5782090849.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<colabpro-navbar></colabpro-navbar>
+<main>
+    <div class="container mt-2">
+        <div class="project_details">
+            <div class="project_details--container">
+                <h2 class="project-section--title">
+                    Miembros del proyecto
+                </h2>
+                <div class="project_details--property">
+                    <label for="project_name" class="project_details--label">Nombre del proyecto</label>
+                    <input id="project_name" type="text" class="project_details--input"/>
+                </div>
+                <div class="project_details--property">
+                    <label for="project_description" class="project_details--label">Descripcion</label>
+                    <textarea id="project_description" class="project_details--input-area"></textarea>
+                </div>
+                <div class="project_details--property">
+                    <label for="project_initial_date" class="project_details--label">Fecha de inicio</label>
+                    <input id="project_initial_date" type="date" class="project_details--input"/>
+                </div>
+                <div class="project_details--property">
+                    <label for="project_end_date" class="project_details--label">Fecha de finalizacion</label>
+                    <input id="project_end_date" type="date" class="project_details--input"/>
+                </div>
+                <div class="project_details--property">
+                    <label for="project_status" class="project_details--label">Estado</label>
+                    <select id="project_status" class="project_details--input">
+                        <option value="not-selected">Seleccione un estado</option>
+                    </select>
+                </div>
+                <div class="project_details--property">
+                    <label for="project_budget" class="project_details--label">Presupuesto</label>
+                    <input id="project_budget" type="number" class="project_details--input"/>
+                </div>
+            </div>
+            <div class="project-members--container container">
+                <div class="project-members--list">
+                    <h2 class="project-section--title">
+                        Miembros del proyecto
+                    </h2>
+                    <ul class="project-members">
+
+                    </ul>
+                </div>
+                <div class="project-member--add">
+                    <label for="search_member" class="project-member--label"></label>
+                    <div class="project-members--controller">
+                        <input id="search_member" class="project-member--input" type="text"/>
+                        <button class="button">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="button"  id="save" >Crear proyecto</button>
+    </div>
+</main>
+
+<template id="project-member">
+    <li class="project-member--item">
+        <img src="" alt="User image">
+        <div class="project-member--info">
+            <p class="project-member--name"></p>
+            <p class="project-member--role"></p>
+        </div>
+        <button class="button danger">
+            <i class="fa fa-trash"></i>
+        </button>
+    </li>
+</template>
+
+<script type="module" src="../scripts/views/project-editor.js"></script>
+</body>
+</html>

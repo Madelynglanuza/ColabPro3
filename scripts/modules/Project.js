@@ -4,7 +4,7 @@ import {TaskStatus} from "./TaskStatus.js";
 
 export class Project extends Savable {
 
-    constructor(id, title, description, status, members, startDate, endDate, tasks) {
+    constructor(id, title, description, status, members, startDate, endDate, tasks, budget) {
         /**
          * @param {number} id
          * @param {string} title
@@ -13,7 +13,8 @@ export class Project extends Savable {
          * @param {string} responsible
          * @param {Date} startDate
          * @param {Date} endDate
-         * @param {number[]} tasks_ids
+         * @param {Task} task
+         * @param {number}
          * @returns {Project}
          * @constructor
          */
@@ -26,6 +27,7 @@ export class Project extends Savable {
         this.startDate = startDate || new Date();
         this.endDate = endDate || new Date();
         this.tasks = tasks || [];
+        this.budget = budget || 0;
     }
 
     addTask(task) {
@@ -57,6 +59,7 @@ export class Project extends Savable {
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString(),
             tasks: this.tasks,
+            budget: this.budget
         };
     }
 
@@ -69,7 +72,8 @@ export class Project extends Savable {
             json.members,
             new Date(json.startDate),
             new Date(json.endDate),
-            json.tasks
+            json.tasks,
+            json.budget
         );
     }
 
@@ -79,14 +83,15 @@ export class Project extends Savable {
 
     clone() {
         return new Project(
-            Math.floor(Math.random() * 1000),
+            null,
             this.title,
             this.description,
             this.status,
             this.members,
             this.startDate,
             this.endDate,
-            this.tasks.map(task => task.clone())
+            this.tasks.map(task => task.clone()),
+            this.budget
         );
     }
 
