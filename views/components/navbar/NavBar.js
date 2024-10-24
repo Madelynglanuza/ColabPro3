@@ -5,11 +5,11 @@ class NavBar extends HTMLElement {
 
         const linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
-        linkElem.setAttribute('href', 'components/NavBar.css')
+        linkElem.setAttribute('href', 'components/NavBar/NavBar.css')
 
         shadow.appendChild(linkElem);
 
-        fetch('components/NavBar.html')
+        fetch('components/NavBar/NavBar.html')
             .then(response => response.text())
             .then(html => {
                 const container = document.createElement('nav');
