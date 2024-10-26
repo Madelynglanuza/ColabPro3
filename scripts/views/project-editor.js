@@ -156,7 +156,6 @@ function isValueValid(value) {
 function renderMembers(project) {
     let members_container = document.getElementById('project-members');
     members_container.innerHTML = '';
-    console.log(project);
     project.members.forEach(projectMember => {
         const member = projectMember.member;
         const clone = document.importNode(projectMemberTemplate, true);

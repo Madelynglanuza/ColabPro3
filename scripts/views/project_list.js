@@ -10,7 +10,6 @@ const localStorage = new LocalStorage();
 
 document.addEventListener('DOMContentLoaded', function () {
     const projects = localStorage.getAllItems(Project);
-    console.log(projects);
 
     renderProjects(projects);
 });

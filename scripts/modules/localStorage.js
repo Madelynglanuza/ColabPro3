@@ -38,7 +38,6 @@ export class LocalStorage {
 
     getAllItems(itemClass) {
         const key = `${itemClass.name.toLowerCase()}_storage`;
-        console.log(key);
         const items = JSON.parse(this.storage.getItem(key)) || {};
         const deserializedItems = {};
 
