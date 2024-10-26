@@ -194,7 +194,6 @@ function setupDropdown(project) {
     searchInput.addEventListener('focus', () => {
         dropdown.style.display = 'block';
         updateDropdown(project);
-        setupCreateMember();
     });
 
     searchInput.addEventListener('input', () => {
@@ -240,9 +239,17 @@ function updateDropdown(project, members) {
 
     const createMemberClone = document.importNode(createMemberItem, true);
 
+    createMemberClone.querySelector('[data-field="createMember"]').addEventListener('click', () => {
+        dropdown.style.display = 'none';
+        let newUserName = prompt('Ingrese el nombre del nuevo miembro')
+        const member = new Member(null, newUserName);
+        localStorage.addItem(member);
+        allMembers = localStorage.getAllItems(Member);
+        updateDropdown(project);
+    });
+
     dropdown.appendChild(createMemberClone);
 }
 
 function setupCreateMember() {
-    //TODO Agragar funcionalidad para crear un nuevo miembro
 }
