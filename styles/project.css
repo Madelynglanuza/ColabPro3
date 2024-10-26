@@ -154,4 +154,125 @@ div {
     background-color: red;
 }
 
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+}
+
+#task-container {
+    padding: 0;
+}
+
+.container--header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-grey-light-3);
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    padding: 10px;
+
+    .container--title {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+}
+
+.tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 20px;
+    gap: 2rem;
+}
+
+
+:not(.task) > .task:first-child {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-grey-light-3);
+}
+
+.task--header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: end;
+
+    .task--title {
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+    .task--id {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 1rem;
+        color: var(--color-grey-dark-2);
+    }
+}
+
+.task--body {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-top: 10px;
+    gap: 3rem;
+    flex-wrap: nowrap;
+
+    .task--item {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        gap: 3rem;
+        flex-wrap: wrap;
+    }
+}
+
+.info-badges {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 10px;
+    flex-wrap: wrap;
+
+    .info-badge {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        box-shadow: var(--shadow-light);
+
+        .info-badge--title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background-color: var(--color-grey-light-4);
+            padding: 5px 10px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .info-badge--value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 0 5px 5px 0 ;
+            color: var(--color-grey-dark-2);
+            background-color: var(--color-grey-light-2);
+        }
+    }
+}
+
 

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ColabPro - Editor de proyectos</title>
+    <link rel="stylesheet" href="../styles/task-editor.css">
+    <script type="module" src="components/navbar/NavBar.js"></script>
+    <!--    Font Awesome-->
+    <script src="https://kit.fontawesome.com/5782090849.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<colabpro-navbar></colabpro-navbar>
+<main>
+    <div class="container mt-2">
+        <div class="task_details">
+            <div class="task_details--container">
+                <h2 class="project-section--title" id="project_name">
+                    Id del proyecto: 1
+                </h2>
+                <div class="task_details--property">
+                    <label for="task_name" class="task_details--label">Nombre de la tarea</label>
+                    <input id="task_name" type="text" class="task_details--input"/>
+                </div>
+                <div class="task_details--property">
+                    <label for="task_description" class="task_details--label">Descripcion</label>
+                    <textarea id="task_description" class="task_details--input-area"></textarea>
+                </div>
+                <div class="task_details--property">
+                    <label for="task_initial_date" class="task_details--label">Fecha de inicio</label>
+                    <input id="task_initial_date" type="date" class="task_details--input"/>
+                </div>
+                <div class="task_details--property">
+                    <label for="task_end_date" class="task_details--label">Fecha de finalizacion</label>
+                    <input id="task_end_date" type="date" class="task_details--input"/>
+                </div>
+                <div class="task_details--property">
+                    <label for="task_status" class="task_details--label">Estado</label>
+                    <select id="task_status" class="task_details--input">
+                        <option value="not-selected">Seleccione un estado</option>
+                    </select>
+                </div>
+                <div class="project-member--add">
+                    <div class="task_details--property">
+                        <label for="task_assigned_to" class="task_details--label">Responsable</label>
+                        <div class="task_assigned_to--controller">
+                            <input id="task_assigned_to" class="task_details--input"/>
+                        </div>
+                    </div>
+                    <ul id="memberDropdown" class="dropdown-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <button class="button" id="save">Crear Tarea</button>
+    </div>
+</main>
+
+<script type="module" src="../scripts/views/task-editor.js"></script>
+</body>
+</html>

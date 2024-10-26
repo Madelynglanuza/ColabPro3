@@ -92,7 +92,7 @@ function createNewProject() {
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get('id');
     const today = new Date();
-    return new Project(parseInt(projectId), null, null, ProjectStatus.PLANNED, [], today, new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1), [], 0);
+    return new Project(parseInt(projectId), null, null, ProjectStatus.PLANNED, [], today, new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1), {}, 0);
 }
 
 function renderProjectData(project) {

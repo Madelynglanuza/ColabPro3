@@ -26,17 +26,16 @@ export class Project extends Savable {
         this.members = members || [];
         this.startDate = startDate || new Date();
         this.endDate = endDate || new Date();
-        this.tasks = tasks || [];
+        this.tasks = tasks || {};
         this.budget = budget || 0;
     }
 
-    addTask(task) {
-        task.project_id = this.id;
-        this.tasks.push(task);
+    setTask(task) {
+        this.tasks[parseInt(task.id)] = task;
     }
 
     removeTask(taskId) {
-        this.tasks = this.tasks.filter(t => t.id !== taskId);
+        delete this.tasks[taskId];
     }
 
     getTasks() {
@@ -44,9 +43,20 @@ export class Project extends Savable {
     }
 
     getProgress() {
-        const totalTasks = this.tasks.length;
-        const completedTasks = this.tasks.filter(task => task.status === TaskStatus.COMPLETED).length;
-        return totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+        const totalTasks = Object.keys(this.tasks).length;
+
+        if (totalTasks <= 0) {
+            return 0;
+        }
+
+
+        const completed = this.completedTasks();
+
+        return (completed * 100) / totalTasks;
+    }
+
+    completedTasks() {
+        return Object.values(this.tasks).filter(task => task.status.value === TaskStatus.COMPLETED.value).length;
     }
 
     toJSON() {

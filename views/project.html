@@ -100,8 +100,59 @@
                  style="--size: 100%"></div>
         </div>
     </div>
+
+    <div class="tasks-container container mt-2" id="task-container">
+        <div class="container--header">
+            <h2 class="container--title">Tareas</h2>
+        </div>
+        <ul class="tasks" id="tasks">
+
+        </ul>
+    </div>
     <script type="module" src="../scripts/main.js"></script>
     <script type="module" src="../scripts/views/project.js"></script>
 </main>
+
+<template id="task-template">
+    <li class="task">
+        <div class="task--header">
+            <h3 class="task--title" data-field="title">Tarea 1</h3>
+            <p class="task--id" data-field="task-id">#1</p>
+        </div>
+        <div class="task--body">
+            <div class="task--item">
+                <p class="task--description" data-field="description">Descripción de la tarea 1</p>
+            </div>
+            <div class="task--item">
+                <div class="info-badges">
+                    <div class="info-badge">
+                        <div class="info-badge--title">Fecha de inicio</div>
+                        <div class="info-badge--value bg-primary" data-field="start-date">01/01/2022</div>
+                    </div>
+                    <div class="info-badge">
+                        <div class="info-badge--title">Fecha de finalización</div>
+                        <div class="info-badge--value bg-primary" data-field="end-date">01/01/2022</div>
+                    </div>
+                    <div class="info-badge">
+                        <div class="info-badge--title">Estado</div>
+                        <div class="info-badge--value bg-primary" data-field="status">Activo</div>
+                    </div>
+                    <div class="info-badge">
+                        <div class="info-badge--title">Responsable</div>
+                        <div class="info-badge--value bg-primary" data-field="assigned-to">Usuario 1</div>
+                    </div>
+                </div>
+                <div class="task-controllers">
+                    <button class="button task--action" title="Editar tarea" data-field="edit-btn">
+                        <i class="fa-regular fa-edit"></i>
+                    </button>
+                    <button class="button task--action bg-danger" title="Eliminar tarea" data-field="delete-btn">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </li>
+</template>
 </body>
 </html>

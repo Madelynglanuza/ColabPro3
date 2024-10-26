@@ -2,7 +2,7 @@ import { TaskStatus } from './TaskStatus.js';
 import {Savable} from "./Savable.js";
 
 export class Task extends Savable {
-    constructor(id, title, description, status, responsible, startDate, endDate, project_id) {
+    constructor(id, title, description, status, assignedTo, startDate, endDate) {
         /**
          * @param {number} id
          * @param {string} title
@@ -19,10 +19,9 @@ export class Task extends Savable {
         this.title = title || '';
         this.description = description || '';
         this.status = status || TaskStatus.PLANNED;
-        this.responsible = responsible || '';
+        this.assignedTo = assignedTo || '';
         this.startDate = startDate || new Date();
         this.endDate = endDate || new Date();
-        this.project_id = project_id || '';
     }
 
     toJSON() {
@@ -31,10 +30,9 @@ export class Task extends Savable {
             title: this.title,
             description: this.description,
             status: this.status,
-            responsible: this.responsible,
+            assignedTo: this.assignedTo,
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString(),
-            project_id: this.project_id
         };
     }
 
@@ -44,10 +42,9 @@ export class Task extends Savable {
             json.title,
             json.description,
             json.status,
-            json.responsible,
+            json.assignedTo,
             new Date(json.startDate),
             new Date(json.endDate),
-            json.project_id
         );
     }
 
@@ -63,11 +60,11 @@ export class Task extends Savable {
         return JSON.stringify(this.toJSON());
     }
 
-    update({title, description, status, responsible, startDate, endDate}) {
+    update({title, description, status, assignedTo, startDate, endDate}) {
         this.title = title || this.title;
         this.description = description || this.description;
         this.status = status || this.status;
-        this.responsible = responsible || this.responsible;
+        this.assignedTo = assignedTo || this.assignedTo;
         this.startDate = startDate || this.startDate;
         this.endDate = endDate || this.endDate;
     }

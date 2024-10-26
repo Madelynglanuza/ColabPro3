@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (projectId) {
         const project = localStorage.getItemById(projectId, Project);
         renderProjectDetails(project);
+        renderTasks(project);
     }
 });
 
@@ -24,10 +25,10 @@ function renderProjectDetails(project) {
     document.querySelector('[data-field="status"]').textContent = project.status.value;
     document.querySelector('[data-field="start-date"]').textContent = project.startDate.toISOString().split('T')[0];
     document.querySelector('[data-field="end-date"]').textContent = project.endDate.toISOString().split('T')[0];
-    document.querySelector('[data-field="progress"]').style.setProperty("--value", getTasksProgress(project));
+    document.querySelector('[data-field="progress"]').style.setProperty("--value", project.getProgress());
 
-    document.querySelector('[data-field="tasks"]').textContent = `${completedTasks(project)} de ${project.tasks.length} Tareas completadas`;
-    document.querySelector('[data-field="tasks-container"]').style.setProperty("--value", getTasksProgress(project));
+    document.querySelector('[data-field="tasks"]').textContent = `${project.completedTasks()} de ${Object.keys(project.tasks).length} Tareas completadas`;
+    document.querySelector('[data-field="tasks-container"]').style.setProperty("--value", project.getProgress());
 
 
 
@@ -38,24 +39,17 @@ function renderProjectDetails(project) {
         window.location.href = `project-editor.html?id=${project.id}`;
     });
 
+    document.querySelector('[data-field="delete"]').addEventListener('click', function () {
+        localStorage.removeItemById(project.id, Project);
+        window.location.href = 'project_list.html';
+    });
+
+    document.querySelector('[data-field="new_task"]').addEventListener('click', function () {
+        window.location.href = `task-editor.html?project_id=${project.id}`;
+    });
+
 }
 
-function getTasksProgress(project) {
-    const totalTasks = project.tasks.length;
-
-    if (totalTasks <= 0) {
-        return 0;
-    }
-
-
-    const completed = completedTasks(project);
-
-    return (completed * 100) / totalTasks;
-}
-
-function completedTasks(project) {
-    return project.tasks.filter(task => task.status === TaskStatus.COMPLETED).length;
-}
 
 function remainingDays(project) {
     const today = new Date();
@@ -80,4 +74,35 @@ function getRemainingDaysProgress(project) {
     const remaining = remainingDays(project);
 
     return 100 - ((remaining * 100) / totalDays);
+}
+
+function renderTasks(project) {
+    const taskTemplate = document.getElementById('task-template');
+    const taskContainer = document.getElementById('tasks');
+    taskContainer.innerHTML = '';
+    console.log(project);
+
+    Object.values(project.tasks).forEach(task => {
+        console.log(task);
+        console.log(task.assignedTo);
+        const clone = document.importNode(taskTemplate.content, true);
+        clone.querySelector('[data-field="title"]').textContent = task.title;
+        clone.querySelector('[data-field="task-id"]').textContent = task.id;
+        clone.querySelector('[data-field="description"]').textContent = task.description;
+        clone.querySelector('[data-field="start-date"]').textContent = task.startDate.split('T')[0];
+        clone.querySelector('[data-field="end-date"]').textContent = task.endDate.split('T')[0];
+        clone.querySelector('[data-field="status"]').textContent = task.status.display_name;
+        clone.querySelector('[data-field="assigned-to"]').textContent = project.members.filter(member => member.id === task.assignedTo.id)[0].member?.name || '';
+
+        clone.querySelector('[data-field="edit-btn"]').addEventListener('click', function () {
+            window.location.href = `task-editor.html?project_id=${project.id}&task_id=${task.id}`;
+        });
+        clone.querySelector('[data-field="delete-btn"]').addEventListener('click', function () {
+            project.removeTask(task.id);
+            localStorage.addItem(project);
+            project = localStorage.getItemById(project.id, Project);
+            renderTasks(project);
+        });
+        taskContainer.appendChild(clone);
+    });
 }
