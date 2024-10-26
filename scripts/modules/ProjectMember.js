@@ -1,11 +1,12 @@
 import {Savable} from "./Savable.js";
+import {ProjectRole} from "./ProjectRole.js";
 
 export class ProjectMember extends Savable {
     constructor(id, project, member, role) {
         super(id);
         this.project = null;
         this.member = member;
-        this.role = role;
+        this.role = role || ProjectRole.CLIENT;
     }
 
     toJSON() {

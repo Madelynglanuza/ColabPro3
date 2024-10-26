@@ -27,9 +27,13 @@ function renderProjectDetails(project) {
     document.querySelector('[data-field="progress"]').style.setProperty("--value", getTasksProgress(project));
 
     document.querySelector('[data-field="tasks"]').textContent = `${completedTasks(project)} de ${project.tasks.length} Tareas completadas`;
+    document.querySelector('[data-field="tasks-container"]').style.setProperty("--value", getTasksProgress(project));
 
 
-    document.querySelector('[data-field="days"]').textContent = `Dias restantes: ${remainingDays(project)}`;
+
+    document.querySelector('[data-field="days"]').textContent = `Dias restantes: ${remainingDays(project)} de ${getDaysDifference(project.startDate, project.endDate)}`;
+    document.querySelector('[data-field="days-container"]').style.setProperty("--value", getRemainingDaysProgress(project));
+
 
 }
 
@@ -66,4 +70,11 @@ function getDaysDifference(date1, date2) {
     }
 
     return result;
+}
+
+function getRemainingDaysProgress(project) {
+    const totalDays = getDaysDifference(project.startDate, project.endDate);
+    const remaining = remainingDays(project);
+
+    return 100 - ((remaining * 100) / totalDays);
 }

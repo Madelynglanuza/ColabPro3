@@ -10,8 +10,6 @@ export class LocalStorage {
             }
             LocalStorage.savable_classes[savableClass.name] = savableClass;
         }
-
-        console.log(LocalStorage.savable_classes);
     }
 
     constructor() {
@@ -20,8 +18,11 @@ export class LocalStorage {
 
     addItem(item) {
         const key = `${item.constructor.name.toLowerCase()}_storage`;
-        const items = this.getAllItems(item.constructor);
-        this.replaceToReference(item);
+
+        let items = this.getAllItems(item.constructor);
+        Object.values(items).forEach(item => this.replaceToReference(item));
+
+        item = this.replaceToReference(item);
         items[item.id] = item;
         this.storage.setItem(key, JSON.stringify(items));
     }
@@ -37,6 +38,7 @@ export class LocalStorage {
 
     getAllItems(itemClass) {
         const key = `${itemClass.name.toLowerCase()}_storage`;
+        console.log(key);
         const items = JSON.parse(this.storage.getItem(key)) || {};
         const deserializedItems = {};
 
@@ -56,7 +58,6 @@ export class LocalStorage {
 
     replaceReferences(item) {
         const replaceReference = (element) => {
-            console.log(element);
             if (element && element.id && element.key && element.reference) {
                 const itemClass = LocalStorage.savable_classes[element.key];
                 return this.getItemById(element.id, itemClass) || null;

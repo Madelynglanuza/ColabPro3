@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ColabPro - Editor de proyectos</title>
     <link rel="stylesheet" href="../styles/project-editor.css">
-    <script type="module" src="components/NavBar.js"></script>
+    <script type="module" src="components/navbar/NavBar.js"></script>
     <!--    Font Awesome-->
     <script src="https://kit.fontawesome.com/5782090849.js" crossorigin="anonymous"></script>
 </head>
@@ -50,20 +50,21 @@
                     <h2 class="project-section--title">
                         Miembros del proyecto
                     </h2>
-                    <ul class="project-members">
+                    <ul class="project-members" id="project-members">
                     </ul>
                 </div>
                 <div class="project-member--add">
                     <label for="search_member" class="project-member--label"></label>
                     <div class="project-members--controller">
-                        <input id="search_member" class="project-member--input" type="text"/>
-                        <button class="button">Agregar</button>
+                        <input id="search_member" class="project-member--input" type="text"
+                               placeholder="Buscar miembro...">
                     </div>
+                    <ul id="memberDropdown" class="dropdown-list"></ul>
                 </div>
             </div>
         </div>
 
-        <button class="button"  id="save" >Crear proyecto</button>
+        <button class="button" id="save">Crear proyecto</button>
     </div>
 </main>
 
@@ -71,12 +72,40 @@
     <li class="project-member--item">
         <img src="https://placehold.co/60x60" alt="User image" class="project-member--image">
         <div class="project-member--info">
-            <p class="project-member--name">Juanita</p>
-            <p class="project-member--role">Director</p>
+            <p class="project-member--name" data-field="member-name">Juanita</p>
+            <!--            <p class="project-member&#45;&#45;role" data-field="member-role">Director</p>-->
+            <div>
+                <label>
+                    Rol:
+                    <select class="project-member--role" data-field="member-role">
+                    </select>
+                </label>
+            </div>
         </div>
-        <button class="button bg-danger project-member--delete">
+        <button class="button bg-danger project-member--delete" data-field="remove-member">
             <i class="fa fa-trash"></i>
         </button>
+    </li>
+</template>
+
+<template id="memberDropdownItem">
+    <li class="dropdown-list--item">
+        <img src="https://placehold.co/60x60" alt="User image" class="dropdown-list--image">
+        <div class="dropdown-list--info">
+            <p class="dropdown-list--name" data-field="member-name">Juanita</p>
+        </div>
+        <button class="button bg-primary dropdown-list--add" data-field="addButton">
+            <i class="fa fa-plus text-white"></i>
+        </button>
+        <div class="memberDropDown--isAdded" data-field="added">
+            <i class="fa fa-check"></i>
+        </div>
+    </li>
+</template>
+
+<template id="createMemberItem">
+    <li class="dropdown-list--create-user" data-field="createMember">
+        <p class="text" data-field="createUser">Crear nuevo usuario...</p>
     </li>
 </template>
 
