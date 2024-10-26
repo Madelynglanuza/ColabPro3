@@ -1,6 +1,5 @@
 import {LocalStorage} from "../modules/localStorage.js";
 import {Project} from "../modules/Project.js";
-import {TaskStatus} from "../modules/TaskStatus.js";
 import {ProjectStatus} from "../modules/ProjectStatus.js";
 import {Task} from "../modules/Task.js";
 import {Member} from "../modules/Member.js";
@@ -10,17 +9,38 @@ import {ProjectRole} from "../modules/ProjectRole.js";
 const localStorage = new LocalStorage();
 LocalStorage.registerSavableClass(Project, Task, Member, ProjectMember);
 
-
-
 const values = {
-    title: document.getElementById('project_name'),
-    description: document.getElementById('project_description'),
-    startDate: document.getElementById('project_initial_date'),
-    endDate: document.getElementById('project_end_date'),
-    status: document.getElementById('project_status'),
-    budget: document.getElementById('project_budget')
-};
-
+    title: {
+        tag: document.getElementById('project_name'),
+        validation: (value, project) => true
+    },
+    description: {
+        tag: document.getElementById('project_description'),
+        validation: (value, project) => true
+    },
+    startDate: {
+        tag: document.getElementById('project_initial_date'),
+        validation: (value, project) => true
+    },
+    endDate: {
+        tag: document.getElementById('project_end_date'),
+        validation: (value, project) => true
+    },
+    status: {
+        tag: document.getElementById('project_status'),
+        validation: (value, project) => true
+    },
+    budget: {
+        tag: document.getElementById('project_budget'),
+        validation: (value, project) => {
+            try {
+                parseFloat(value) >= 0
+            } catch (error) {
+                return false;
+            }
+        }
+    }
+}
 
 const button = document.getElementById('save');
 
@@ -77,12 +97,13 @@ function createNewProject() {
 
 function renderProjectData(project) {
     Object.entries(values).forEach(([key, value]) => {
+
         if (key === 'status') {
-            value.value = project.status.value;
+            value.tag.value = project.status.value;
         } else if (key === 'startDate' || key === 'endDate') {
-            value.value = project[key].toISOString().split('T')[0];
+            value.tag.value = project[key].toISOString().split('T')[0];
         } else {
-            value.value = project.toJSON()[key];
+            value.tag.value = project.toJSON()[key];
         }
     });
 
@@ -102,23 +123,30 @@ function setupSaveButton(project, isEditing) {
 }
 
 function saveProject(project_to_save) {
-    Object.entries(values).forEach(([key, value]) => {
-        if (!isValueValid(value.value)) {
-            console.error(`Invalid value for ${key}: ${value.value}`);
-            return;
-        }
+    try {
+        Object.entries(values).forEach(([key, value]) => {
+            if (!isValueValid(value.tag.value)) {
+                throw new Error(`Valor invalido para ${key}`);
+            }
 
-        if (key === 'status') {
-            project_to_save[key] = ProjectStatus[value.value];
-        } else if (key === 'startDate' || key === 'endDate') {
-            project_to_save[key] = new Date(value.value);
-        } else {
-            project_to_save[key] = value.value;
-        }
-    });
 
-    localStorage.addItem(project_to_save);
+            if (key === 'status') {
+                project_to_save[key] = ProjectStatus[value.tag.value];
+            } else if (key === 'startDate' || key === 'endDate') {
+                project_to_save[key] = new Date(value.tag.value);
+            } else if (key === 'budget') {
+                project_to_save[key] = parseFloat(value.tag.value);
+            } else {
+                project_to_save[key] = value.tag.value;
+            }
+        });
 
+        localStorage.addItem(project_to_save);
+
+        window.location.href = `project.html?id=${project_to_save.id}`;
+    } catch (exception) {
+        console.error('Error al guardar el proyecto:', exception);
+    }
 }
 
 function isValueValid(value) {

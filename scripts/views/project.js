@@ -34,6 +34,9 @@ function renderProjectDetails(project) {
     document.querySelector('[data-field="days"]').textContent = `Dias restantes: ${remainingDays(project)} de ${getDaysDifference(project.startDate, project.endDate)}`;
     document.querySelector('[data-field="days-container"]').style.setProperty("--value", getRemainingDaysProgress(project));
 
+    document.querySelector('[data-field="edit_btn"]').addEventListener('click', function () {
+        window.location.href = `project-editor.html?id=${project.id}`;
+    });
 
 }
 
